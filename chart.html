@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- For Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- For JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- global event -->
+  <script src="js/global.js"></script>
+
+  <!-- global css -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/chart.css" />
+</head>
+<body>
+<div class="root">
+  <div class="app">
+    <div id="header"></div>
+    <div class="content-container">
+      <section class="chart-section">
+        <header>
+          <h1>종목</h1>
+        </header>
+        <div id="chart"></div>
+      </section>
+      <aside class="stock-list">
+        <select id="stock-list-group">
+          <option value="">국내종목</option>
+          <option value="">해외종목</option>
+        </select>
+        <ul>
+          <li>삼성전자우</li><li>카카오</li><li>SK하이닉스</li><li>현대차</li><li>현대중공업</li>
+          <li>빙그레</li><li>셀트리온</li><li>LG화학</li><li>기업은행</li><li>LG생활건강우</li>
+          <li>LG생활건강</li><li>신한지주</li><li>SK Telecom</li><li>포스코</li><li>현대모비스</li>
+          <li>삼성바이오로직스</li><li>현대백화점</li><li>KB금융</li><li>삼성물산</li><li>SK그룹</li>
+          <li>기아차</li><li>한국전력</li><li>삼성생명</li><li>삼성에스디에스</li><li>SK Innovation</li>
+          <li>KT&G</li><li>아모레퍼시픽</li><li>엔씨소프트</li><li>현대중공업</li><li>한화생명</li>
+        </ul>
+      </aside>
+    </div>
+    <div id="footer"></div>
+  </div>
+</div>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/moonrisekingdom.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="js/chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'jua';
+  src:url('../fonts/jua.ttf');
+}
+
+html, body {
+  font-family: 'jua';
+  height: 100%;
+}
+
+.root, .app {
+  height: 100%;
+}
+
+.content-container {
+  min-height: calc(100% - 230px);
+}
+
+.news-container{
+	width:100%;
+	max-width:600px;
+	margin:0 auto;
+}
+.news-container a{
+	display:block;
+	font-size:24px;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.news-container ul{
+	line-height:40px;
+}

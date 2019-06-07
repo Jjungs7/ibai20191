@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- For Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery0.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- For JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- global event -->
+    <script src="js/global.js"></script>
+
+    <!-- global css -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/community.css" />
+
+    <script type="text/javascript">
+      window.onload = function makeTable() {
+        var tableBody = document.getElementsByClassName("community-board-body")[0];
+        var jsonLocation = "json/table.json";
+        var numRow = 10;
+        
+        $.getJSON(jsonLocation, function(data) {
+          var length = data.length;
+          $.each(data, function(i, item) {
+            var tr = document.createElement("tr");
+            tr.setAttribute("height", "40px");
+
+            var td1 = document.createElement("td");
+            td1.innerText = item.title;
+            td1.setAttribute("class", "community-board-title");
+
+            var td2 = document.createElement("td");
+            td2.innerText = item.name;
+            td2.setAttribute("class", "community-board-name");
+
+            var td3 = document.createElement("td");
+            td2.innerText = item.date;
+            td3.setAttribute("class", "community-board-date");
+
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+
+            tableBody.appendChild(tr);
+          });
+
+          var pageSection = document.getElementsByClassName("community-pages")[0];
+          var numPages = length/numRow + 1;
+
+          for (var i=1; i<=numPages; ++i) {
+            var outerDiv = document.createElement("div");
+            var innerDiv = document.createElement("div");
+            innerDiv.setAttribute("class", "community-page-element");
+
+            if (i == 1) {
+              innerDiv.setAttribute("style", "font-weight: bold");
+            }
+
+            innerDiv.innerText = i;
+            outerDiv.appendChild(innerDiv);
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="root">
+      <div class="app">
+        <div id="header"></div>
+        <div class="content-container">
+          <section class="community-container">
+            <div class="community-main-area">
+              <h1>Community</h1>
+            </div>
+            <div class="community-button-area">
+              <button class="community-button">글쓰기</button>
+            </div>
+            <table class="community-board">
+              <thead class="community-board-head">
+                <th style="width: 40%">제목</th>
+                <th style="width: 25%">작성자</th>
+                <th style="width: 35%">작성 일시</th>
+              </thead>
+              <tbody class="community-board-body">
+              </tbody>
+            </table>
+            <div class="community-pages">
+            </div>
+          </section>
+        </div>
+        <div id="footer"></div>
+      </div>
+    </div>
+  </body>
+</html>

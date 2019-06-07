@@ -1,0 +1,59 @@
+.community-container {
+  width: 60%;
+  margin: auto;
+}
+
+.community-button-area {
+  text-align: right;
+}
+
+.community-button {
+  width: 80px;
+  height: 30px;
+  background-color: #007bff;
+  font-size: 16px;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.community-board {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.community-board-head {
+  text-align: center;
+  border-bottom: 2px solid #adb5bd;
+}
+
+.community-board-title {
+  padding-left: 20px; 
+  font-size: 20px; 
+  border-right: 1px solid #D4D4D4;
+}
+
+.community-board-name {
+  text-align: center;
+  border-right: 1px solid #D4D4D4;
+}
+
+.community-board-date {
+  text-align: center;
+}
+
+.community-pages {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.community-page-element {
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+}

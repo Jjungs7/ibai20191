@@ -7,18 +7,6 @@
   text-align: right;
 }
 
-.community-button {
-  width: 80px;
-  height: 30px;
-  background-color: #007bff;
-  font-size: 16px;
-  color: white;
-  border: 0;
-  outline: 0;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .community-board {
   width: 100%;
   margin-top: 20px;

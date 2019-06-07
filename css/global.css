@@ -8,6 +8,18 @@ html, body {
   height: 100%;
 }
 
+button {
+  width: 80px;
+  height: 30px;
+  background-color: #007bff;
+  font-size: 16px;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .root, .app {
   height: 100%;
 }

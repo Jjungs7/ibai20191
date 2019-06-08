@@ -17,19 +17,28 @@
   border-bottom: 2px solid #adb5bd;
 }
 
+.community-board-row {
+  height: 40px;
+}
+
 .community-board-title {
   padding-left: 20px; 
   font-size: 20px; 
   border-right: 1px solid #D4D4D4;
+  cursor: pointer;
+}
+
+.community-board-title:hover {
+  text-decoration: underline;
 }
 
 .community-board-name {
-  text-align: center;
+  padding-left: 10px;
   border-right: 1px solid #D4D4D4;
 }
 
 .community-board-date {
-  text-align: center;
+  padding-left: 10px; 
 }
 
 .community-pages {

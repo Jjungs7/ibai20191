@@ -19,7 +19,19 @@
 
     <script type="text/javascript">
       function submitClick() {
-        alert("포스트가 작성되었습니다.");
+        var title = document.getElementsByClassName('post-input-title')[0].value;
+        var name = document.getElementsByClassName('post-input-name')[0].value;
+        var content = document.getElementsByClassName('post-input-content')[0].value;
+
+        if (title.length == 0) {
+          alert("제목을 입력해주세요.");
+        } else if (name.length == 0) {
+          alert("작성자명을 입력해주세요.");
+        } else if (content.length == 0) {
+          alert("내용을 입력해주세요.");
+        } else {
+          alert("포스트가 작성되었습니다.");
+        }
       }
     </script>
   </head>

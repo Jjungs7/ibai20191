@@ -3,12 +3,11 @@
   <head>
     <!-- For Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery0.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- For JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- global event -->
     <script src="js/global.js"></script>
@@ -30,10 +29,13 @@
 
           <div class="container">
             <div class="main-stock-container">
+              <h2>현재 급상승하고 있는 주식:</h2>
+              <section id="main-chart-1"></section>
+              <section id="main-chart-2"></section>
             </div>
 
             <div class="main-news-container">
-              <h1>News</h1>
+              <h2>News</h2>
               <ul>
                 <li><a href="https://kr.investing.com/news/economy-news/article-183381">[초점]"코스피 2050 깨지면 무조건 사라…IT·헬스케어 유망"</a></li>
                 <li><a href="https://kr.investing.com/news/stock-market-news/article-189845">이주열 "韓경제, 글로벌 충격 대응력 높여야…정책 개선 필요"</a></li>
@@ -50,5 +52,223 @@
         <footer id="footer"></footer>
       </div>
     </div>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/moonrisekingdom.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script>
+      window.onload = () => {
+        let navHeight = document.getElementById('mainNav').offsetHeight;
+        let picHeight = document.getElementsByClassName('main-theme-picture')[0].offsetHeight;
+        let text = document.getElementsByClassName('main-theme-text')[0];
+        text.style.display = "block";
+        let pTop = parseInt($(text).css('padding-top').slice(0, $(text).css('padding-top').length - 2));
+        text.style.setProperty("top", (navHeight + pTop + (picHeight / 2 - text.offsetHeight / 2)).toString() + 'px');
+      };
+
+      am4core.ready(function() {
+        am4core.useTheme(am4themes_moonrisekingdom);
+        am4core.useTheme(am4themes_animated);
+
+        let chart = am4core.create("main-chart-1", am4charts.XYChart);
+
+        let title = chart.titles.create();
+        title.text = "삼성전자";
+        title.fontSize = 24;
+        title.fontColor = "#333333";
+        title.marginBottom = 22;
+        chart.paddingRight = 20;
+
+        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.grid.template.location = 0;
+
+        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
+
+        let series = chart.series.push(new am4charts.CandlestickSeries());
+        series.dataFields.dateX = "date";
+        series.dataFields.valueY = "close";
+        series.dataFields.openValueY = "open";
+        series.dataFields.lowValueY = "low";
+        series.dataFields.highValueY = "high";
+        series.simplifiedProcessing = true;
+        series.tooltipText = "Open:{openValueY.value} 원\nLow:{lowValueY.value} 원\nHigh:{highValueY.value} 원\nClose:{valueY.value} ";
+
+        chart.cursor = new am4charts.XYCursor();
+
+        let interval = null;
+        let lastDate = null;
+        function getRandomIntWon(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          let val = Math.floor(Math.random() * (max - min + 1)) + min;
+          val = Math.floor(val / 100) * 100;
+          return val;
+        }
+
+        function getData(formattedDate, baseData) {
+          let min = Math.ceil(-1);
+          let max = Math.floor(1);
+          let val = Math.floor(Math.random() * (max - min + 1)) + min;
+          let range_small = -1000 + (val === -1 ? -1000 : 0);
+          let range_big = 1000 + (val === 1 ? 1000 : 0);
+          return {
+            'date': formattedDate,
+            'open': baseData,
+            'high': baseData + getRandomIntWon(range_small, range_big),
+            'low': baseData + getRandomIntWon(range_small, range_big),
+            'close': baseData + getRandomIntWon(range_small, range_big)
+          }
+        }
+
+        function generateData(startDate, endDate) {
+          let toCustomFormat = d => {
+            return `${d.getFullYear()}-${('0' + (d.getMonth() + 1).toString()).slice(-2)}-${('0' + d.getDate().toString()).slice(-2)}`;
+          };
+
+          let sd = new Date(startDate);
+          let ed = new Date(endDate);
+
+          let newData = [];
+          let formattedDate = toCustomFormat(sd);
+          let baseData = 10000;
+          while(formattedDate <= toCustomFormat(ed)) {
+            let data = getData(formattedDate, baseData);
+            newData.push(data);
+            sd = new Date(sd.setDate(sd.getDate() + 1));
+            formattedDate = toCustomFormat(sd);
+            baseData = data.close;
+          }
+          lastDate = sd;
+          return newData;
+        }
+
+        function toNewChart(name) {
+          if(typeof(interval) === 'number') {
+            clearInterval(interval);
+            interval = null;
+          }
+
+          let toCustomFormat = d => {
+            return `${d.getFullYear()}-${('0' + (d.getMonth() + 1).toString()).slice(-2)}-${('0' + d.getDate().toString()).slice(-2)}`;
+          };
+
+          chart.data = generateData('2019-05-27', '2019-06-13');
+          interval = setInterval(() => {
+            let newData = chart.data;
+            let data = getData(toCustomFormat(lastDate), chart.data[chart.data.length - 1].close);
+            newData.push(data);
+            newData.splice(0, 1);
+            chart.data = newData;
+            lastDate = new Date(lastDate.setDate(lastDate.getDate() + 1));
+          }, 5000);
+        }
+
+        toNewChart();
+      });
+
+      am4core.ready(function() {
+        am4core.useTheme(am4themes_moonrisekingdom);
+        am4core.useTheme(am4themes_animated);
+
+        let chart = am4core.create("main-chart-2", am4charts.XYChart);
+        let title = chart.titles.create();
+        title.text = "Apple";
+        title.fontSize = 24;
+        title.fontColor = "#333333";
+        title.marginBottom = 22;
+        chart.paddingRight = 20;
+
+        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.grid.template.location = 0;
+
+        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
+
+        let series = chart.series.push(new am4charts.CandlestickSeries());
+        series.dataFields.dateX = "date";
+        series.dataFields.valueY = "close";
+        series.dataFields.openValueY = "open";
+        series.dataFields.lowValueY = "low";
+        series.dataFields.highValueY = "high";
+        series.simplifiedProcessing = true;
+        series.tooltipText = "Open:{openValueY.value} 원\nLow:{lowValueY.value} 원\nHigh:{highValueY.value} 원\nClose:{valueY.value} ";
+
+        chart.cursor = new am4charts.XYCursor();
+        let interval = null;
+        let lastDate = null;
+        function getRandomIntWon(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          let val = Math.floor(Math.random() * (max - min + 1)) + min;
+          val = Math.floor(val / 100) * 100;
+          return val;
+        }
+
+        function getData(formattedDate, baseData) {
+          let min = Math.ceil(-1);
+          let max = Math.floor(1);
+          let val = Math.floor(Math.random() * (max - min + 1)) + min;
+          let range_small = -1000 + (val === -1 ? -1000 : 0);
+          let range_big = 1000 + (val === 1 ? 1000 : 0);
+          return {
+            'date': formattedDate,
+            'open': baseData,
+            'high': baseData + getRandomIntWon(range_small, range_big),
+            'low': baseData + getRandomIntWon(range_small, range_big),
+            'close': baseData + getRandomIntWon(range_small, range_big)
+          }
+        }
+
+        function generateData(startDate, endDate) {
+          let toCustomFormat = d => {
+            return `${d.getFullYear()}-${('0' + (d.getMonth() + 1).toString()).slice(-2)}-${('0' + d.getDate().toString()).slice(-2)}`;
+          };
+
+          let sd = new Date(startDate);
+          let ed = new Date(endDate);
+
+          let newData = [];
+          let formattedDate = toCustomFormat(sd);
+          let baseData = 10000;
+          while(formattedDate <= toCustomFormat(ed)) {
+            let data = getData(formattedDate, baseData);
+            newData.push(data);
+            sd = new Date(sd.setDate(sd.getDate() + 1));
+            formattedDate = toCustomFormat(sd);
+            baseData = data.close;
+          }
+          lastDate = sd;
+          return newData;
+        }
+
+        function toNewChart(name) {
+          if(typeof(interval) === 'number') {
+            clearInterval(interval);
+            interval = null;
+          }
+
+          let toCustomFormat = d => {
+            return `${d.getFullYear()}-${('0' + (d.getMonth() + 1).toString()).slice(-2)}-${('0' + d.getDate().toString()).slice(-2)}`;
+          };
+
+          chart.data = generateData('2019-05-27', '2019-06-13');
+          interval = setInterval(() => {
+            let newData = chart.data;
+            let data = getData(toCustomFormat(lastDate), chart.data[chart.data.length - 1].close);
+            newData.push(data);
+            newData.splice(0, 1);
+            chart.data = newData;
+            lastDate = new Date(lastDate.setDate(lastDate.getDate() + 1));
+          }, 5000);
+        }
+
+        toNewChart();
+      });
+    </script>
   </body>
 </html>

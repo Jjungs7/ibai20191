@@ -1,0 +1,26 @@
+.faq-container {
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
+}
+
+.faq-container form > div{
+  overflow:hidden;
+  margin:10px 0;
+}
+
+.faq-container span.lable{
+  width:70px;
+  display:block;
+}
+.faq-container span.lable.password{
+  margin-left:20px
+}
+.faq-container span{
+  display:block;
+  float:left;
+}
+.faq-container textarea{
+  width:100%;
+  height:180px;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- For Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- For JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- global css -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/faq.css" />
+
+  <!-- header footer -->
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+</head>
+<body>
+<div class="root">
+  <div class="app">
+    <div id="header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand" href="/" id="nav-logo">Gazua</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars"></i></button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">주식목록</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">소식</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">커뮤니티</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">고객센터</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Content Start -->
+    <div class="content-container">
+    
+	  <div class="faq-container">
+	    <h1>1:1 문의 </h1>
+		<div>
+		
+			<form method="post" action="">
+				<div><span class="lable">이름</span><span><input type="text"></span><span class="lable password">비밀번호</span><span><input type="password"></span></div>
+				<div><span class="lable">이메일</span><span><input type="text"></span></div>
+				<div><span class="lable">휴대폰번호</span><span><input type="text"></span></div>
+				<div>
+					<span class="lable">문의종류</span> 
+						<label>일반</label><input type="radio" name="kind">
+						<label>매수/매입</label><input type="radio" name="kind">
+						<label>서비스</label><input type="radio" name="kind">
+						<label>불만사항</label><input type="radio" name="kind">
+				</div>
+				<div>
+						<span class="lable">관심종목</span> 
+						<input type="checkbox"><label>코스피</label>
+						<input type="checkbox"><label>코스닥</label>
+						<input type="checkbox"><label>Gazua</label>		
+				</div>
+				<div>
+				<span class="lable">제목</span><span><input type="text" style="width:100%;"></span>
+				</div>
+				<div>
+					<span class="lable">내용</span>
+					<div>
+					<textarea></textarea>
+					</div>
+				</div>
+				<div>
+					<input type="submit" value="보내기">
+				</div>
+			
+			</form>
+		
+		
+		</div>
+	  </div>
+    </div>
+
+    <!-- Content End -->
+    <div id="footer">
+      <div class="container">
+        <table class="footer-table">
+          <thead>
+          <tr>
+            <td>Name</td>
+            <td>Department</td>
+            <td>Student ID</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>NG</td>
+            <td>Computer Science</td>
+            <td>2014147000</td>
+          </tr>
+          <tr>
+            <td>JI</td>
+            <td>Computer Science</td>
+            <td>2014147000</td>
+          </tr>
+          <tr>
+            <td>JW</td>
+            <td>Computer Science</td>
+            <td>2014147000</td>
+          </tr>
+          <tr>
+            <td>OG</td>
+            <td>Library & Information Science</td>
+            <td>2014196000</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

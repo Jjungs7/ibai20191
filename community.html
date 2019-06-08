@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- For Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery0.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- For JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- global event -->
+    <script src="js/global.js"></script>
+
+    <!-- global css -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/community.css" />
+
+    <script type="text/javascript">
+      var jsonData = [
+        {
+          "title": "안녕하세요!",
+          "name": "에부부",
+          "date": "2019-06-08 12:04:02"
+        },
+
+        {
+          "title": "좋은 정보 알려드립니다.",
+          "name": "베부부",
+          "date": "2019-06-07 11:34:11"
+        },
+
+        {
+          "title": "요즘 트렌드가",
+          "name": "Admin",
+          "date": "2019-06-07 02:15:13"
+        },
+
+        {
+          "title": "혹시 삼성 주식 사신분 있나요?",
+          "name": "베부부",
+          "date": "2019-06-02 08:55:45"
+        },
+
+        {
+          "title": "이 사이트 뭐하는 사이트인가요",
+          "name": "크와아악",
+          "date": "2019-06-02 07:00:01"
+        },
+
+        {
+          "title": "심심해요",
+          "name": "Peaceholic",
+          "date": "2019-06-01 14:59:59"
+        },
+
+        {
+          "title": "자꾸 떨어지네요...",
+          "name": "Jjung7",
+          "date": "2019-05-30 18:36:18"
+        },
+
+        {
+          "title": "카카오 주식 빨리 사놔야할듯",
+          "name": "Bismute",
+          "date": "2019-05-29 01:00:01"
+        },
+
+        {
+          "title": "으아아아아",
+          "name": "지크",
+          "date": "2019-05-29 00:02:09"
+        },
+
+        {
+          "title": "광고 하나만 할게요",
+          "name": "noname",
+          "date": "2019-05-27 23:56:03"
+        },
+
+        {
+          "title": "엔씨 빨리 빼길 잘했네요ㅎㅎ",
+          "name": "단타충",
+          "date": "2019-05-26 21:08:00"
+        },
+
+        {
+          "title": "반가워요!",
+          "name": "Admin",
+          "date": "2019-05-26 19:07:57"
+        }
+      ];
+
+      window.onload = function makeTable() {
+        var tableBody = document.getElementsByClassName("community-board-body")[0];
+        var page = 1;
+        var numRow = 10;
+        var numPages = jsonData.length/numRow + 1;
+
+        for (var i=numRow*(page-1); i<numRow*page; ++i) {
+          if (i >= jsonData.length) {
+            break;
+          }
+
+          var jsonObj = jsonData[i];
+
+          var tr = document.createElement("tr");
+          tr.setAttribute("class", "community-board-row");
+
+          var td1 = document.createElement("td");
+          td1.innerText = jsonObj.title;
+          td1.setAttribute("class", "community-board-title");
+
+          if (i == 0) {
+            td1.setAttribute("onclick", "location.href='postspec.html'")
+          }
+
+          var td2 = document.createElement("td");
+          td2.innerText = jsonObj.name;
+          td2.setAttribute("class", "community-board-name");
+
+          var td3 = document.createElement("td");
+          td3.innerText = jsonObj.date;
+          td3.setAttribute("class", "community-board-date");
+
+          tr.append(td1);
+          tr.append(td2);
+          tr.append(td3);
+
+          tableBody.appendChild(tr);
+        }
+
+        var pageSection = document.getElementsByClassName("community-pages")[0];
+        var outerDiv = document.createElement("div");
+
+        for (var i=1; i<=numPages; ++i) {
+          var innerDiv = document.createElement("div");
+          innerDiv.setAttribute("class", "community-page-element");
+
+          if (i == page) {
+            innerDiv.setAttribute("style", "font-weight: bold");
+          }
+
+          innerDiv.innerText = i.toString();
+          outerDiv.appendChild(innerDiv);
+        }
+
+        pageSection.appendChild(outerDiv);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="root">
+      <div class="app">
+        <div id="header"></div>
+        <div class="content-container">
+          <section class="community-container">
+            <div class="community-main-area">
+              <h1>Community</h1>
+            </div>
+            <div class="community-button-area">
+              <button class="community-post-button" onclick="location.href='post.html'">글쓰기</button>
+            </div>
+            <table class="community-board">
+              <thead class="community-board-head">
+                <th style="width: 50%">제목</th>
+                <th style="width: 20%">작성자</th>
+                <th style="width: 30%">작성 일시</th>
+              </thead>
+              <tbody class="community-board-body">
+              </tbody>
+            </table>
+            <div class="community-pages">
+            </div>
+          </section>
+        </div>
+        <div id="footer"></div>
+      </div>
+    </div>
+  </body>
+</html>

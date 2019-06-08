@@ -1,0 +1,60 @@
+.postspec-container {
+  width: 60%;
+  margin: auto;
+}
+
+.postspec-info-area {
+  color: #adb5bd;
+}
+
+.postspec-info {
+  display: inline-block;
+}
+
+.postspec-content {
+  width: 100%;
+  height: 500px;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.postspec-comment-title {
+  font-size: 20px;
+}
+
+.postspec-comment-button {
+  float: right;
+  margin-right: 20px;
+}
+
+.postspec-comment-name-input {
+  width: 30%;
+  height: 25px;
+  margin-left: 5px;
+  font-family: sans-serif;
+}
+
+.postspec-comment-content-input {
+  width: 95%;
+  height: 60px;
+  margin-left: 5px;
+  font-family: sans-serif;
+}
+
+.postspec-comment-row {
+  border-bottom: 1px solid #D4D4D4;
+}
+
+.postspec-comment-name {
+  width: 20%;
+}
+
+.postspec-comment-content {
+  width: 50%;
+  font-family: sans-serif;
+}
+
+.postspec-comment-date {
+  width: 30%;
+}

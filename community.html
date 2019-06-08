@@ -112,6 +112,10 @@
           td1.innerText = jsonObj.title;
           td1.setAttribute("class", "community-board-title");
 
+          if (i == 0) {
+            td1.setAttribute("onclick", "location.href='postspec.html'")
+          }
+
           var td2 = document.createElement("td");
           td2.innerText = jsonObj.name;
           td2.setAttribute("class", "community-board-name");

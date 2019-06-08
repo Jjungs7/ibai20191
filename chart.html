@@ -24,22 +24,34 @@
     <div class="content-container">
       <section class="chart-section">
         <header>
-          <h1>종목</h1>
+          <h1 id="cur-stock">삼성전자</h1>
+          <p>시작: <span id="cur-stock-start"></span> 원</p>
+          <p>최고: <span id="cur-stock-highest"></span> 원</p>
+          <p>최저: <span id="cur-stock-lowest"></span> 원</p>
+          <p>종료: <span id="cur-stock-end"></span> 원<p>
         </header>
         <div id="chart"></div>
       </section>
       <aside class="stock-list">
         <select id="stock-list-group">
-          <option value="">국내종목</option>
-          <option value="">해외종목</option>
+          <option value="domestic" selected="selected">국내종목</option>
+          <option value="foreign">해외종목</option>
         </select>
-        <ul>
-          <li>삼성전자우</li><li>카카오</li><li>SK하이닉스</li><li>현대차</li><li>현대중공업</li>
+        <ul id="domestic">
+          <li>삼성전자</li><li>카카오</li><li>SK하이닉스</li><li>현대차</li><li>현대중공업</li>
           <li>빙그레</li><li>셀트리온</li><li>LG화학</li><li>기업은행</li><li>LG생활건강우</li>
           <li>LG생활건강</li><li>신한지주</li><li>SK Telecom</li><li>포스코</li><li>현대모비스</li>
           <li>삼성바이오로직스</li><li>현대백화점</li><li>KB금융</li><li>삼성물산</li><li>SK그룹</li>
           <li>기아차</li><li>한국전력</li><li>삼성생명</li><li>삼성에스디에스</li><li>SK Innovation</li>
           <li>KT&G</li><li>아모레퍼시픽</li><li>엔씨소프트</li><li>현대중공업</li><li>한화생명</li>
+        </ul>
+        <ul id="foreign">
+          <li>Apple</li><li>Microsoft</li><li>Intel</li><li>NVIDIA</li><li>CSCO</li>
+          <li>Adidas</li><li>Nike</li><li>Lufthansa</li><li>Benz</li><li>BMW</li>
+          <li>Amazon</li><li>Tesla</li><li>Facebook</li><li>AT&T</li><li>Qualcomm</li>
+          <li>Starbucks</li><li>Walt Disney</li><li>Adobe</li><li>Coca Cola</li><li>McDonalds</li>
+          <li>Burger King</li><li>Netflix</li><li>Nintendo</li><li>Mitsubishi</li><li>Baidu</li>
+          <li>Barclays</li><li>Toyota</li><li>L'Oreal</li><li>American Express</li><li>IBM</li>
         </ul>
       </aside>
     </div>
@@ -51,5 +63,7 @@
 <script src="https://www.amcharts.com/lib/4/themes/moonrisekingdom.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script src="js/chart.js"></script>
+<script>
+</script>
 </body>
 </html>

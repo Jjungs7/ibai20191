@@ -27,6 +27,12 @@ button {
 .content-container {
   min-height: calc(100% - 170px);
   position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.content-container.margin-top-zero {
+  margin-top: 0px;
 }
 
 .theme-color {

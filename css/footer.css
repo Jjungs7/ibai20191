@@ -1,7 +1,6 @@
 #footer {
-  background: #007bff;
   width: 100%;
-  height: 265px;
+  height: 110px;
   color: white;
   padding-top: 5px;
 }
@@ -19,10 +18,14 @@
 }
 
 .footer-table p {
-  font-size: 12px;
+  font-size: 14px;
 }
 
-#github-link {
+.footer-link {
   cursor: pointer;
   padding: 15px 0;
+  margin-right: 15px;
+  font-size: 30px;
+  color: white;
 }
+

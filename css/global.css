@@ -25,6 +25,10 @@ button {
 }
 
 .content-container {
-  min-height: calc(100% - 230px);
+  min-height: calc(100% - 170px);
   position: relative;
+}
+
+.theme-color {
+  background-color: #454545;
 }

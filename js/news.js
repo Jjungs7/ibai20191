@@ -104,6 +104,7 @@ function changeViewOption(option) {
 
   $('#news-simple > ul').empty();
   $('#news-detail').empty();
+  $("#news-page-container").empty();
   if(viewOption === 'simple') {
     loadSimpleNews();
     for(var i in news) {
@@ -149,6 +150,5 @@ function changePage(page) {
 }
 
 $(document).ready(function() {
-  // changeViewOption('simple');
-  changeViewOption('detail');
+  changeViewOption('simple');
 });
